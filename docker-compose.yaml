@@ -13,4 +13,4 @@ services:
       -  8094:8094 # Dev port 5
       -  8095:8095 # Dev port 6
     volumes:
-        - ./vfs:/home
+        - ./data:/root/data
