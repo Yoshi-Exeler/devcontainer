@@ -9,5 +9,6 @@ RUN npm install -g @angular/cli
 RUN npm install -g @ionic/cli
 RUN curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v3.18.0/protoc-3.18.0-linux-x86_64.zip && unzip protoc-3.18.0-linux-x86_64.zip -d /root/sdk/proto && rm protoc-3.18.0-linux-x86_64.zip
 RUN echo 'export PATH=$PATH:/root/sdk/proto/bin' &>> ~/.bashrc
+RUN export GOPATH=/root/sdk/go &&/root/sdk/go/bin/go install github.com/golang/protobuf/protoc-gen-go@latest && /root/sdk/go/bin/go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 WORKDIR /root/data
 ENTRYPOINT .container/autoexec.sh && tail -f /dev/null
