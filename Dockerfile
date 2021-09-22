@@ -12,5 +12,6 @@ RUN curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v3.18
 RUN echo 'export PATH=$PATH:/root/sdk/proto/bin' &>> ~/.bashrc
 RUN export GOPATH=/root/sdk/go-path && /root/sdk/go/bin/go install github.com/golang/protobuf/protoc-gen-go@latest && /root/sdk/go/bin/go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 RUN npm install -g ts-protoc-gen
-WORKDIR /root/data
-ENTRYPOINT .container/autoexec.sh && tail -f /dev/null
+COPY ./autoexec.sh /root/autoexec.sh
+WORKDIR /root/
+ENTRYPOINT ./autoexec.sh && rm autoexec.sh && tail -f /dev/null
