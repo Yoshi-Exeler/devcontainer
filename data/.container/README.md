@@ -1,0 +1,1 @@
+this folder should contain resources needed to setup the container

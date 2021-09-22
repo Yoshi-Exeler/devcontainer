@@ -1,0 +1,3 @@
+# exclude anything in the workspace
+data/workspace/
+!data/workspace/README.md

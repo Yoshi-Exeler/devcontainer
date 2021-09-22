@@ -1,3 +1,4 @@
 FROM centos:latest
 RUN dnf install -y git make nano
-ENTRYPOINT tail -f /dev/null
+WORKDIR /root/data
+ENTRYPOINT .container/autoexec.sh && tail -f /dev/null
