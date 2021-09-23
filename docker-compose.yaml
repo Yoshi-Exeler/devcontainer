@@ -16,4 +16,3 @@ services:
       -  8095:8095 # Dev port 6
     volumes:
         - ./workspace:/root/workspace
-    priviledged: true
