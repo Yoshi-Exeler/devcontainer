@@ -1,4 +1,5 @@
 FROM centos:latest
+RUN yum install update && yum install upgrade
 RUN dnf install -y git make nano wget unzip zsh htop
 RUN mkdir /root/sdk
 RUN wget https://dl.google.com/go/go1.17.1.linux-amd64.tar.gz && tar -C /root/sdk/ -xzf go1.17.1.linux-amd64.tar.gz && rm -rf go1.17.linux-amd64.tar.gz
