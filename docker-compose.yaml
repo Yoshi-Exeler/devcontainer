@@ -5,6 +5,7 @@ services:
     container_name: yex-dev
     hostname: yex-dev
     build: .
+    image: yex-dev:latest
     restart: always
     ports:
       -  8100:8100 # Ionic dev server port

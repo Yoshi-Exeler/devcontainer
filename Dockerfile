@@ -1,6 +1,6 @@
 FROM centos:latest
 RUN yum install update && yum install upgrade
-RUN dnf install -y git make nano wget unzip zsh htop
+RUN dnf install -y git make nano wget unzip zsh htop openssh_clients
 RUN mkdir /root/sdk
 RUN wget https://dl.google.com/go/go1.17.1.linux-amd64.tar.gz && tar -C /root/sdk/ -xzf go1.17.1.linux-amd64.tar.gz && rm -rf go1.17.linux-amd64.tar.gz
 RUN echo 'export PATH=$PATH:/root/sdk/go/bin' &>> ~/.zshrc && echo 'export PATH=$PATH:/root/sdk/go-path/bin' &>> ~/.zshrc && echo 'export GOROOT=/root/sdk/go' &>> ~/.zshrc && echo 'export GOPATH=/root/sdk/go-path' &>> ~/.zshrc
