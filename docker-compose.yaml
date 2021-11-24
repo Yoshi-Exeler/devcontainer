@@ -7,6 +7,8 @@ services:
     build: .
     image: yex-dev:latest
     restart: always
+    environment:
+      - "TZ:Europe/Berlin"
     ports:
       -  "10081:8100" # Ionic dev server port
       -  "10022:22"   # SSH Port
@@ -24,3 +26,6 @@ services:
         - ~/.p10k.zsh:/root/.p10k.zsh:ro
         - ~/powerlevel10k:/root/powerlevel10k:ro
         - ~/.zsh_history:/root/.zsh_history:rw
+        - "/etc/timezone:/etc/timezone:ro" 
+        - "/etc/localtime:/etc/localtime:ro" 
+

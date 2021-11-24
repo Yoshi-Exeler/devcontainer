@@ -1,5 +1,6 @@
 FROM archlinux:base-devel
 RUN useradd -m -g wheel -s /usr/bin/zsh -d /root -u 1001 yoshi
+RUN echo "%wheel ALL=(ALL) ALL" &>> /etc/sudoers 
 RUN chown yoshi /
 RUN pacman -Syu zsh nodejs-lts-gallium npm unzip openssh --noconfirm
 RUN mkdir /root/sdk
