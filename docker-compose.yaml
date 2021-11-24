@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.9'
 
 services:
   yex-dev:
@@ -8,12 +8,19 @@ services:
     image: yex-dev:latest
     restart: always
     ports:
-      -  8100:8100 # Ionic dev server port
-      -  8090:8090 # Dev port 1
-      -  8091:8091 # Dev port 2
-      -  8092:8092 # Dev port 3
-      -  8093:8093 # Dev port 4
-      -  8094:8094 # Dev port 5
-      -  8095:8095 # Dev port 6
+      -  "10081:8100" # Ionic dev server port
+      -  "10022:22"   # SSH Port
+      -  "10090:8090" # Dev port 1
+      -  "10091:8091" # Dev port 2
+      -  "10092:8092" # Dev port 3
+      -  "10093:8093" # Dev port 4
+      -  "10094:8094" # Dev port 5
+      -  "10095:8095" # Dev port 6
     volumes:
         - ./workspace:/root/workspace
+        - ~/.ssh/known_hosts/:/root/.ssh/known_hosts:ro
+        - /etc/shadow:/etc/shadow:ro
+        - /etc/ssh/:/etc/ssh:ro
+        - ~/.p10k.zsh:/root/.p10k.zsh:ro
+        - ~/powerlevel10k:/root/powerlevel10k:ro
+        - ~/.zsh_history:/root/.zsh_history:rw
