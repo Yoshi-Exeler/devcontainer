@@ -20,7 +20,7 @@ services:
       -  "10095:8095" # Dev port 6
     volumes:
         - ./workspace:/root/workspace
-        - ~/.ssh/known_hosts/:/root/.ssh/known_hosts:ro
+        - ~/.ssh/:/root/.ssh/:ro
         - /etc/shadow:/etc/shadow:ro
         - /etc/ssh/:/etc/ssh:ro
         - ~/.p10k.zsh:/root/.p10k.zsh:ro
