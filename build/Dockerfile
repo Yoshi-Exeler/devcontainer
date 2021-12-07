@@ -1,13 +1,13 @@
 # pull archlinux + base developement programs like make and gcc
 FROM archlinux:base-devel 
 # copy zshrc into the container
-COPY ./build/.zshrc /root/.zshrc
+COPY ./.zshrc /root/.zshrc
 # perform basic system setup
 RUN useradd -m -g wheel -s /usr/bin/zsh -d /root -u 1001 yoshi && \
     echo "%wheel ALL=(ALL) ALL" &>> /etc/sudoers && \
     chown -R yoshi /root/.zshrc && \
     mkdir /root/sdk && \
-    pacman -Syu zsh nodejs-lts-gallium git npm unzip openssh nano --noconfirm
+    pacman -Syu zsh nodejs-lts-gallium git npm unzip openssh nano docker --noconfirm
 # install npm packages
 RUN npm install -g @angular/cli && \
     npm install -g @ionic/cli && \
