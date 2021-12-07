@@ -36,7 +36,7 @@ RUN export GOPATH=/root/sdk/go-path && \
     /root/sdk/go/bin/go install github.com/golang/protobuf/protoc-gen-go@latest && \
     /root/sdk/go/bin/go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest && \
     /root/sdk/go/bin/go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.43.0
-# append overrides for host $GOPATH and $GOROOT to .sshzshrc
+# append overrides for host $GOPATH and $GOROOT to .zshrc
 # and set correct ownerships for the created directories
 RUN echo 'export PATH=$PATH:/root/sdk/go/bin' &>> ~/.zshrc && \
     echo 'export PATH=$PATH:/root/sdk/go-path/bin' &>> ~/.zshrc && \
