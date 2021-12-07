@@ -1,16 +1,15 @@
 # pull archlinux + base developement programs like make and gcc
 FROM archlinux:base-devel 
 # copy zshrc into the container
-ADD ./build/.zshrc /root/.zshrc
+COPY ./build/.zshrc /root/.zshrc
 # setup a user with the correct name and uid, set permissions for the user, create sdk folder
 RUN useradd -m -g wheel -s /usr/bin/zsh -d /root -u 1001 yoshi && \
     echo "%wheel ALL=(ALL) ALL" &>> /etc/sudoers && \
     chown yoshi / && \
     chown -R yoshi /root/.zshrc && \
-    mkdir /root/sdk && \
-    chown -R yoshi /root/sdk
+    mkdir /root/sdk
 # install all additional packages that we can get from pacman
-RUN pacman -Syu zsh nodejs-lts-gallium git npm unzip openssh --noconfirm
+RUN pacman -Syu zsh nodejs-lts-gallium git npm unzip openssh nano --noconfirm
 # install npm packages
 RUN npm install -g @angular/cli && \
     npm install -g @ionic/cli && \
@@ -42,12 +41,13 @@ RUN export GOPATH=/root/sdk/go-path && \
 # append overrides for host $GOPATH and $GOROOT to .sshzshrc
 RUN echo 'export PATH=$PATH:/root/sdk/go/bin' &>> ~/.zshrc && \
     echo 'export PATH=$PATH:/root/sdk/go-path/bin' &>> ~/.zshrc && \
+    echo 'export PATH=$PATH:/root/sdk/proto/bin' &>> ~/.zshrc  && \
     echo 'export GOROOT=/root/sdk/go' &>> ~/.zshrc && \
-    echo 'export GOPATH=/root/sdk/go-path' &>> ~/.zshrc && \
-    echo 'export PATH=$PATH:/root/sdk/proto/bin' &>> ~/.zshrc
+    echo 'export GOPATH=/root/sdk/go-path' &>> ~/.zshrc
 # set correct ownerships for the created directories
 RUN chown yoshi /root && \
     chown -R yoshi /root/.cache && \
-    chown -R yoshi /root/.npm
+    chown -R yoshi /root/.npm && \
+    chown -R yoshi /root/sdk
 # set container entrypoint to sshd in non deamon mode
 ENTRYPOINT /usr/bin/sshd -D
