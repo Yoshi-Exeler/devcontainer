@@ -19,13 +19,16 @@ services:
       -  "10094:8094" # Dev port 5
       -  "10095:8095" # Dev port 6
     volumes:
-        - ./workspace:/root/workspace
-        - ~/.ssh/:/root/.ssh/:ro
-        - /etc/shadow:/etc/shadow:ro
-        - /etc/ssh/:/etc/ssh:ro
-        - ~/.p10k.zsh:/root/.p10k.zsh:ro
-        - ~/powerlevel10k:/root/powerlevel10k:ro
-        - ~/.zsh_history:/root/.zsh_history:rw
-        - "/etc/timezone:/etc/timezone:ro" 
-        - "/etc/localtime:/etc/localtime:ro" 
+        - /var/run/docker.sock:/var/run/docker.sock # docker socket so we can build images
+        - ./workspace:/root/workspace # workspace mapping
+        - ~/.ssh/:/root/.ssh/:ro # ssh keys of the host
+        - /etc/shadow:/etc/shadow:ro # passwords of the host
+        - ~/.docker/:/root/.docker # user host docker config
+        - ~/.gitconfig/:/root/.gitconfig:ro # use host git config
+        - /etc/ssh/:/etc/ssh:ro # map sshd config
+        - ~/.p10k.zsh:/root/.p10k.zsh:ro # maintain consistent p10k style
+        - ~/powerlevel10k:/root/powerlevel10k:ro # maintain consistent p10k style
+        - ~/.zsh_history:/root/.zsh_history:rw # share zsh history
+        - "/etc/timezone:/etc/timezone:ro" # set correct timezone 
+        - "/etc/localtime:/etc/localtime:ro" # set correct time
 
